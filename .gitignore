@@ -218,3 +218,26 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- Seguridad del Proyecto TFG ---
+# Archivos de entorno con credenciales
+.env
+*.env
+!.env.example
+
+# Claves criptográficas y certificados locales
+*.pem
+*.key
+*.crt
+*.pfx
+id_rsa*
+
+# Terraform / OpenTofu (estados locales con secretos)
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Docker y archivos temporales
+docker-compose.override.yml
+*.log
