@@ -1,7 +1,7 @@
 # ☁️ Gestoría Sur S.L. - Infraestructura Cloud Segura y Automatizada
 
-![Estado](https://img.shields.io/badge/Estado-En%20Desarrollo-blue)
-![Stack](https://img.shields.io/badge/Stack-KVM%20%7C%20OpenTofu%20%7C%20Ansible%20%7C%20Docker-success)
+![Estado](https://img.shields.io/badge/Estado-En%20Desarrollo-blue)  
+![Stack](https://img.shields.io/badge/Stack-KVM%20%7C%20OpenTofu%20%7C%20Ansible%20%7C%20Docker-success)  
 ![Coste](https://img.shields.io/badge/Presupuesto-0%20%E2%82%AC-red)
 
 Proyecto Intermodular (TFG) para el ciclo de **Administración de Sistemas Informáticos en Red (ASIR)**. 
