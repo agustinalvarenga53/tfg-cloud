@@ -26,7 +26,7 @@ Para erradicar estos problemas técnicos bajo una estricta limitación de hardwa
 5. **Continuidad de Negocio (Disaster Recovery):** Backups automatizados y cifrados enviados a la capa gratuita de **AWS S3**.
 
 ## 📂 Estructura del Repositorio
-- `.github/workflows/`: Pipelines de CI para validación de código estático (Linting).
+- `.github/workflows/`: Pipelines de CI para validación de código estático.
 - `docs/`: Documentación, esquemas Mermaid/Draw.io y requisitos.
 - `infra/`: Código IaC separado por responsabilidades (`tofu/` para KVM y `ansible/` para configuración).
 - `scripts/`: Automatizaciones en Python/Bash (Backups offsite y gestión de VPN).
