@@ -1,0 +1,114 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Página-1" id="9yZfvoXSnC03CO-52c2J">
+    <mxGraphModel dx="3535" dy="889" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <UserObject label="" mermaidData="{&#xa;  &quot;data&quot;: &quot;flowchart LR\n    EXT([\&quot;Usuarios y Empleados&lt;br/&gt;(Internet / Exterior)\&quot;])\n\n    subgraph HOST[\&quot;Host Local: Ubuntu Desktop 26.04.1 LTS (KVM/libvirt - 16 GB RAM / 400 GB Disco)\&quot;]\n        direction LR\n\n        subgraph DMZ[\&quot;Red DMZ - 10.10.10.0/24\&quot;]\n            VM1[\&quot;VM1 - Edge / DMZ&lt;br/&gt;1 vCPU | 1 GB RAM | 15 GB&lt;br/&gt;Nginx Proxy HTTPS + Web&lt;br/&gt;WireGuard VPN\&quot;]\n        end\n\n        subgraph INT[\&quot;Red Interna - 10.10.20.0/24\&quot;]\n            VM2[\&quot;VM2 - Core / Apps&lt;br/&gt;2 vCPU | 5 GB RAM | 120 GB&lt;br/&gt;Docker Compose:&lt;br/&gt;Nextcloud + MariaDB\&quot;]\n        end\n\n        subgraph OPS[\&quot;Red Monitorización - 10.10.30.0/24\&quot;]\n            VM3[\&quot;VM3 - Ops / Monitorización&lt;br/&gt;1 vCPU | 2 GB RAM | 30 GB&lt;br/&gt;Docker Compose:&lt;br/&gt;Prometheus + Grafana + Alertmanager\&quot;]\n        end\n    end\n\n    BKP[(\&quot;Backup Externo Cifrado&lt;br/&gt;USB en local /&lt;br/&gt;AWS S3 en Fase Cloud\&quot;)]\n\n    EXT --&gt;|\&quot;HTTPS 443&lt;br/&gt;VPN 51820 UDP\&quot;| VM1\n    VM1 --&gt;|\&quot;Proxy interno&lt;br/&gt;hacia Nextcloud\&quot;| VM2\n    VM1 -.-&gt;|\&quot;Métricas&lt;br/&gt;node_exporter / cAdvisor\&quot;| VM3\n    VM2 -.-&gt;|\&quot;Métricas&lt;br/&gt;node_exporter / cAdvisor\&quot;| VM3\n    VM2 --&gt;|\&quot;Script Python&lt;br/&gt;Backup cifrado\&quot;| BKP\n\n    style DMZ fill:#fff3cd,stroke:#d39e00,color:#000\n    style INT fill:#d1ecf1,stroke:#0c5460,color:#000\n    style OPS fill:#d4edda,stroke:#155724,color:#000\n    style HOST fill:#f8f9fa,stroke:#343a40,color:#000&quot;,&#xa;  &quot;config&quot;: null,&#xa;  &quot;version&quot;: &quot;12&quot;&#xa;}" id="zTSWgo7Spmue7Dj8Uv5Z-1">
+          <mxCell connectable="0" parent="1" style="group;transparentBounds=1;editIcon=1;lockedGroup=0;groupPadding=10;" vertex="1">
+            <mxGeometry as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Host Local: Ubuntu Desktop 26.04.1 LTS (KVM/libvirt - 16 GB RAM / 400 GB Disco)" mermaidId="n:HOST" mermaidBaseStyle="html=1;whiteSpace=nowrap;strokeWidth=1;verticalAlign=top;fillColor=#f8f9fa;strokeColor=#343a40;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Host Local: Ubuntu Desktop 26.04.1 LTS (KVM/libvirt - 16 GB RAM / 400 GB Disco)" id="zTSWgo7Spmue7Dj8Uv5Z-2">
+          <mxCell parent="zTSWgo7Spmue7Dj8Uv5Z-1" style="html=1;whiteSpace=nowrap;strokeWidth=1;verticalAlign=top;fillColor=#f8f9fa;strokeColor=#343a40;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="467" width="1256" x="635" y="1550" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Red Monitorización - 10.10.30.0/24" mermaidId="n:OPS" mermaidBaseStyle="html=1;whiteSpace=nowrap;strokeWidth=1;verticalAlign=top;fillColor=#d4edda;strokeColor=#155724;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Red Monitorización - 10.10.30.0/24" id="zTSWgo7Spmue7Dj8Uv5Z-3">
+          <mxCell parent="zTSWgo7Spmue7Dj8Uv5Z-2" style="html=1;whiteSpace=nowrap;strokeWidth=1;verticalAlign=top;fillColor=#d4edda;strokeColor=#155724;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="264" width="257" x="975" y="48" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="VM3 - Ops / Monitorización&#xa;1 vCPU | 2 GB RAM | 30 GB&#xa;Docker Compose:&#xa;Prometheus + Grafana + Alertmanager" mermaidId="n:VM3" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="VM3 - Ops / Monitorización&#xa;1 vCPU | 2 GB RAM | 30 GB&#xa;Docker Compose:&#xa;Prometheus + Grafana + Alertmanager" id="zTSWgo7Spmue7Dj8Uv5Z-4">
+          <mxCell parent="zTSWgo7Spmue7Dj8Uv5Z-3" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="192" width="152" x="24" y="48" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Red Interna - 10.10.20.0/24" mermaidId="n:INT" mermaidBaseStyle="html=1;whiteSpace=nowrap;strokeWidth=1;verticalAlign=top;fillColor=#d1ecf1;strokeColor=#0c5460;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Red Interna - 10.10.20.0/24" id="zTSWgo7Spmue7Dj8Uv5Z-5">
+          <mxCell parent="zTSWgo7Spmue7Dj8Uv5Z-2" style="html=1;whiteSpace=nowrap;strokeWidth=1;verticalAlign=top;fillColor=#d1ecf1;strokeColor=#0c5460;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="244" width="206" x="449" y="200" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="VM2 - Core / Apps&#xa;2 vCPU | 5 GB RAM | 120 GB&#xa;Docker Compose:&#xa;Nextcloud + MariaDB" mermaidId="n:VM2" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="VM2 - Core / Apps&#xa;2 vCPU | 5 GB RAM | 120 GB&#xa;Docker Compose:&#xa;Nextcloud + MariaDB" id="zTSWgo7Spmue7Dj8Uv5Z-6">
+          <mxCell parent="zTSWgo7Spmue7Dj8Uv5Z-5" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="172" width="152" x="24" y="48" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Red DMZ - 10.10.10.0/24" mermaidId="n:DMZ" mermaidBaseStyle="html=1;whiteSpace=nowrap;strokeWidth=1;verticalAlign=top;fillColor=#fff3cd;strokeColor=#d39e00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Red DMZ - 10.10.10.0/24" id="zTSWgo7Spmue7Dj8Uv5Z-7">
+          <mxCell parent="zTSWgo7Spmue7Dj8Uv5Z-2" style="html=1;whiteSpace=nowrap;strokeWidth=1;verticalAlign=top;fillColor=#fff3cd;strokeColor=#d39e00;fontColor=default;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="244" width="200" x="34" y="97" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="VM1 - Edge / DMZ&#xa;1 vCPU | 1 GB RAM | 15 GB&#xa;Nginx Proxy HTTPS + Web&#xa;WireGuard VPN" mermaidId="n:VM1" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="VM1 - Edge / DMZ&#xa;1 vCPU | 1 GB RAM | 15 GB&#xa;Nginx Proxy HTTPS + Web&#xa;WireGuard VPN" id="zTSWgo7Spmue7Dj8Uv5Z-8">
+          <mxCell parent="zTSWgo7Spmue7Dj8Uv5Z-7" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="172" width="152" x="24" y="48" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Proxy interno&#xa;hacia Nextcloud" mermaidId="e:VM1-&gt;VM2#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=1;exitY=0.65;entryX=0;entryY=0.5;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="Proxy interno&#xa;hacia Nextcloud" id="zTSWgo7Spmue7Dj8Uv5Z-9">
+          <mxCell edge="1" parent="zTSWgo7Spmue7Dj8Uv5Z-2" source="zTSWgo7Spmue7Dj8Uv5Z-8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=1;exitY=0.65;entryX=0;entryY=0.5;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" target="zTSWgo7Spmue7Dj8Uv5Z-6">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="244" y="256" />
+                <mxPoint x="274" y="256" />
+                <mxPoint x="274" y="334" />
+                <mxPoint x="439" y="334" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Métricas&#xa;node_exporter / cAdvisor" mermaidId="e:VM1-&gt;VM3#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;dashed=1;dashPattern=2 2;fixDash=1;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=1;exitY=0.35;entryX=0;entryY=0.35;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="Métricas&#xa;node_exporter / cAdvisor" id="zTSWgo7Spmue7Dj8Uv5Z-10">
+          <mxCell edge="1" parent="zTSWgo7Spmue7Dj8Uv5Z-2" source="zTSWgo7Spmue7Dj8Uv5Z-8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;dashed=1;dashPattern=2 2;fixDash=1;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=1;exitY=0.35;entryX=0;entryY=0.35;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" target="zTSWgo7Spmue7Dj8Uv5Z-4">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="244" y="206" />
+                <mxPoint x="274" y="206" />
+                <mxPoint x="274" y="128" />
+                <mxPoint x="935" y="128" />
+                <mxPoint x="935" y="163" />
+                <mxPoint x="965" y="163" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Métricas&#xa;node_exporter / cAdvisor" mermaidId="e:VM2-&gt;VM3#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;dashed=1;dashPattern=2 2;fixDash=1;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=1;exitY=0.35;entryX=0;entryY=0.65;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="Métricas&#xa;node_exporter / cAdvisor" id="zTSWgo7Spmue7Dj8Uv5Z-11">
+          <mxCell edge="1" parent="zTSWgo7Spmue7Dj8Uv5Z-2" source="zTSWgo7Spmue7Dj8Uv5Z-6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;dashed=1;dashPattern=2 2;fixDash=1;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=1;exitY=0.35;entryX=0;entryY=0.65;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" target="zTSWgo7Spmue7Dj8Uv5Z-4">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="665" y="309" />
+                <mxPoint x="695" y="309" />
+                <mxPoint x="695" y="282" />
+                <mxPoint x="935" y="282" />
+                <mxPoint x="935" y="220" />
+                <mxPoint x="965" y="220" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Usuarios y Empleados&#xa;(Internet / Exterior)" mermaidId="n:EXT" mermaidBaseStyle="html=1;rounded=1;whiteSpace=wrap;arcSize=50;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Usuarios y Empleados&#xa;(Internet / Exterior)" id="zTSWgo7Spmue7Dj8Uv5Z-12">
+          <mxCell parent="zTSWgo7Spmue7Dj8Uv5Z-1" style="html=1;rounded=1;whiteSpace=wrap;arcSize=50;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="108" width="171" x="270" y="1727" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Backup Externo Cifrado&#xa;USB en local /&#xa;AWS S3 en Fase Cloud" mermaidId="n:BKP" mermaidBaseStyle="html=1;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;strokeWidth=2;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Backup Externo Cifrado&#xa;USB en local /&#xa;AWS S3 en Fase Cloud" id="zTSWgo7Spmue7Dj8Uv5Z-13">
+          <mxCell parent="zTSWgo7Spmue7Dj8Uv5Z-1" style="html=1;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;strokeWidth=2;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="170" width="144" x="2083" y="1824" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="HTTPS 443&#xa;VPN 51820 UDP" mermaidId="e:EXT-&gt;VM1#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="HTTPS 443&#xa;VPN 51820 UDP" id="zTSWgo7Spmue7Dj8Uv5Z-14">
+          <mxCell edge="1" parent="zTSWgo7Spmue7Dj8Uv5Z-1" source="zTSWgo7Spmue7Dj8Uv5Z-12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" target="zTSWgo7Spmue7Dj8Uv5Z-8">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Script Python&#xa;Backup cifrado" mermaidId="e:VM2-&gt;BKP#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=1;exitY=0.64;entryX=0;entryY=0.5;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="Script Python&#xa;Backup cifrado" id="zTSWgo7Spmue7Dj8Uv5Z-15">
+          <mxCell edge="1" parent="zTSWgo7Spmue7Dj8Uv5Z-1" source="zTSWgo7Spmue7Dj8Uv5Z-6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=1;exitY=0.64;entryX=0;entryY=0.5;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" target="zTSWgo7Spmue7Dj8Uv5Z-13">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
